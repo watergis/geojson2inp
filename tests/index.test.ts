@@ -5,6 +5,7 @@ describe('test', (): void => {
 
   test('success case', (): void => {
     const config = {
+      title: 'test',
       geojson: {
         junctions: __dirname + '/data/junctions.geojson',
         pipes: __dirname + '/data/pipes.geojson',
@@ -16,7 +17,7 @@ describe('test', (): void => {
       output: __dirname + '/data.inp'
     }
   
-    const js2inp = new geojson2inp(config.geojson, config.output);
+    const js2inp = new geojson2inp(config.geojson, config.output, config.title);
     const file = js2inp.generate();
     
     expect(fs.existsSync(file)).toBeTruthy();

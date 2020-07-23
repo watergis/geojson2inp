@@ -5,3 +5,6 @@ export {default as InpTanks} from './InpTanks';
 export {default as InpPipes} from './InpPipes';
 export {default as InpPumps} from './InpPumps';
 export {default as InpCurves} from './InpCurves';
+export {default as InpValves} from './InpValves';
+export {default as InpTitle} from './InpTitle';
+export {default as InpEnd} from './InpEnd';
