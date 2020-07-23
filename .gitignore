@@ -1,3 +1,6 @@
+es6
+*.inp
+
 # Logs
 logs
 *.log
