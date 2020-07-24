@@ -7,4 +7,5 @@ export {default as InpPumps} from './InpPumps';
 export {default as InpCurves} from './InpCurves';
 export {default as InpValves} from './InpValves';
 export {default as InpTitle} from './InpTitle';
+export {default as InpOptions} from './InpOptions';
 export {default as InpEnd} from './InpEnd';

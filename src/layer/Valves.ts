@@ -26,22 +26,20 @@ export default class Valves extends LayerBase {
 
   load() {
     const geojson = this.loadGeoJSON();
+    if (!geojson){return;}
     geojson.features.forEach((f: GeoJSON.Feature) => {
       const valve = new Valve(f.properties);
       this.valves.push(valve);
       const key = [valve.lon, valve.lat].join(',');
       const coord = this.coords.getByKey(key);
       if (!coord){return;};
-      // this.del_coords_id.push(coord.id);
+      this.del_coords_id.push(coord.id);
       
-      this.pipes.getPipes().forEach((pipe:Pipe)=>{
-        if (coord.id == pipe.node1){
-          valve.setNode(valve.node1, pipe.node2);
-          // this.del_pipes_id.push(pipe.id);
-        }else if (coord.id == pipe.node2){
-          valve.setNode(pipe.node1, valve.node2);
-        }
-      })
+      let intersect_pipes : Pipe[] = this.pipes.getIntersectPipes(coord.id);
+      if (intersect_pipes.length > 0){
+        valve.setNode(intersect_pipes[0].node1, intersect_pipes[0].node2);
+        this.del_pipes_id.push(intersect_pipes[0].id);
+      }
     });
   }
 

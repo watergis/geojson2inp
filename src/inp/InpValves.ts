@@ -36,6 +36,7 @@ export default class InpValves extends InpBase {
   }
 
   exportContents() {
+    if (!this.valves){return;}
     this.valves.forEach((t: Valve) => {
       this.addContent(t);
     });

@@ -26,22 +26,20 @@ export default class Pumps extends LayerBase {
 
   load() {
     const geojson = this.loadGeoJSON();
+    if (!geojson){return;}
     geojson.features.forEach((f: GeoJSON.Feature) => {
       const pump = new Pump(f.properties);
       this.pumps.push(pump);
       const key = [pump.lon, pump.lat].join(',');
       const coord = this.coords.getByKey(key);
       if (!coord){return;};
-      // this.del_coords_id.push(coord.id);
+      this.del_coords_id.push(coord.id);
       
-      this.pipes.getPipes().forEach((pipe:Pipe)=>{
-        if (coord.id == pipe.node1){
-          pump.setNode(pump.node1, pipe.node2);
-          // this.del_pipes_id.push(pipe.id);
-        }else if (coord.id == pipe.node2){
-          pump.setNode(pipe.node1, pump.node2);
-        }
-      })
+      let intersect_pipes : Pipe[] = this.pipes.getIntersectPipes(coord.id);
+      if (intersect_pipes.length > 0){
+        pump.setNode(intersect_pipes[0].node1, intersect_pipes[0].node2);
+        this.del_pipes_id.push(intersect_pipes[0].id);
+      }
     });
   }
 

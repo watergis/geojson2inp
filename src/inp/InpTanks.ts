@@ -38,6 +38,7 @@ export default class InpTanks extends InpBase {
   }
 
   exportContents() {
+    if (!this.tanks){return;}
     this.tanks.forEach((t: Tank) => {
       this.addContent(t);
     });

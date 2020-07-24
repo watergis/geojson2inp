@@ -8,6 +8,8 @@ export default class LayerBase {
   }
 
   loadGeoJSON() {
-    return JSON.parse(fs.readFileSync(this.geojsonFile, 'utf8'));
+    if (fs.existsSync(this.geojsonFile)){
+      return JSON.parse(fs.readFileSync(this.geojsonFile, 'utf8'));
+    }
   }
 }

@@ -40,6 +40,7 @@ export default class InpPipes extends InpBase {
   }
 
   exportContents() {
+    if (!this.pipes){return;}
     this.pipes.forEach((t: Pipe) => {
       if (this.idsExcludes && this.idsExcludes.includes(t.id)){
         return;

@@ -1,5 +1,5 @@
 {
-  "name": "geojson2inp",
+  "name": "@watergis/geojson2inp",
   "version": "1.0.0",
   "description": "This module converts GeoJSON to EPANET INP file",
   "main": "dist/index.js",
@@ -9,6 +9,9 @@
     "dist",
     "es6"
   ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "scripts": {
     "build": "npm run build:cjs && npm run build:esm",
     "build:cjs": "tsc --project . --module commonjs --outDir ./dist",

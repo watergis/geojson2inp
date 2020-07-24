@@ -10,10 +10,11 @@ export default class Coordinates extends LayerBase {
   }
 
   load() {
-    const junctions = this.loadGeoJSON();
+    const geojson = this.loadGeoJSON();
+    if (!geojson){return;}
 
     this.coordMap = {};
-    junctions.features.forEach((f: GeoJSON.Feature) => {
+    geojson.features.forEach((f: GeoJSON.Feature) => {
       let coord: Coordinate = new Coordinate(f.properties);
       let key: string = coord.getKey();
       this.coordMap[key] = coord;

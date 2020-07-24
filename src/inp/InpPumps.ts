@@ -30,6 +30,7 @@ export default class InpPumps extends InpBase {
   }
 
   exportContents() {
+    if (!this.pumps){return;}
     this.pumps.forEach((t: Pump) => {
       this.addContent(t);
     });

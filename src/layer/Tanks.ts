@@ -15,6 +15,7 @@ export default class Tanks extends LayerBase {
 
   load() {
     const geojson = this.loadGeoJSON();
+    if (!geojson){return;}
     geojson.features.forEach((f: GeoJSON.Feature) => {
       let t: Tank = new Tank(f.properties);
       this.tanks.push(t);

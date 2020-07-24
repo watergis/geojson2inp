@@ -14,6 +14,7 @@ export default class Reservoirs extends LayerBase {
 
   load() {
     const geojson = this.loadGeoJSON();
+    if (!geojson){return;}
     geojson.features.forEach((f: GeoJSON.Feature) => {
       let r: Reservoir = new Reservoir(f.properties);
       this.reservoirs.push(r);

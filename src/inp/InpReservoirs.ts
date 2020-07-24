@@ -28,6 +28,7 @@ export default class InpReservoirs extends InpBase {
   }
 
   exportContents() {
+    if (!this.reservoirs){return;}
     this.reservoirs.forEach((r: Reservoir) => {
       this.addContent(r);
     });

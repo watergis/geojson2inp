@@ -2,9 +2,9 @@ import fs from 'fs';
 
 export default class InpBase{
   protected file: string = '';
-  protected title: string = '';
+  protected title: string | undefined;
 
-  constructor(file: string, title: string) {
+  constructor(file: string, title?: string) {
     this.file = file;
     this.title = title;
   }
@@ -14,6 +14,7 @@ export default class InpBase{
   }
 
   addTitle(){
+    if (!this.title){return;}
     this.addText(`[${this.title}]\n`);
   }
 

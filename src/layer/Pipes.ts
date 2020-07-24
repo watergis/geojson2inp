@@ -21,6 +21,7 @@ export default class Pipes extends LayerBase {
     }
 
     const geojson = this.loadGeoJSON();
+    if (!geojson){return;}
     geojson.features.forEach((f: GeoJSON.Feature) => {
       const pipe_id: string = getProperty(f.properties, 'id');
       const pipe_size: number = getProperty(f.properties, 'diameter');
@@ -70,8 +71,15 @@ export default class Pipes extends LayerBase {
     })
   }
 
-  getPipes(){
-    return this.pipes;
+  getIntersectPipes(nodeid:string){
+    let intersect_pipes : Pipe[] = [];
+    this.pipes.forEach((pipe:Pipe)=>{
+      if (nodeid == pipe.node1 || nodeid == pipe.node2){
+        intersect_pipes.push(pipe);
+        return;
+      }
+    })
+    return intersect_pipes;
   }
 
   getFormat(output: string, idsExcludes: string[]) {
