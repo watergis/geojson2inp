@@ -1,10 +1,8 @@
 import InpBase from './InpBase';
 
 export default class InpTitle extends InpBase {
-  private projectTitle: string;
-  constructor(file: string, projectTitle: string) {
+  constructor(protected file: string, private projectTitle: string) {
     super(file, 'TITLE')
-    this.projectTitle = projectTitle;
   }
 
   exportContents() {

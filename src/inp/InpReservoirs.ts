@@ -3,10 +3,8 @@ import InpBase from './InpBase';
 import { Reservoir } from '../asset';
 
 export default class InpReservoirs extends InpBase {
-  private reservoirs: Reservoir[];
-  constructor(file: string, reservoirs: Reservoir[]) {
+  constructor(protected file: string, private reservoirs: Reservoir[]) {
     super(file, 'RESERVOIRS')
-    this.reservoirs = reservoirs;
   }
 
   createHeader() {

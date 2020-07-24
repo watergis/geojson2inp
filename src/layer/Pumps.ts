@@ -5,8 +5,6 @@ import { InpPumps, InpCurves } from '../inp';
 
 export default class Pumps extends LayerBase {
   private pumps: Pump[] = [];
-  private pipes: Pipes;
-  private coords: Coordinates;
 
   private del_pipes_id: string[] = [];
   get_del_pipes_id(){
@@ -18,15 +16,13 @@ export default class Pumps extends LayerBase {
     return this.del_coords_id;
   }
 
-  constructor(geojsonFile: string, coords: Coordinates, pipes: Pipes) {
-    super(geojsonFile);
-    this.coords = coords;
-    this.pipes = pipes;
+  constructor(protected geojsonFile: string, private coords: Coordinates, private pipes: Pipes) {
+    super('Pumps', geojsonFile);
   }
 
   load() {
     const geojson = this.loadGeoJSON();
-    if (!geojson){return;}
+    if (!geojson){return false;}
     geojson.features.forEach((f: GeoJSON.Feature) => {
       const pump = new Pump(f.properties);
       this.pumps.push(pump);

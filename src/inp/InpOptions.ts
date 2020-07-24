@@ -1,7 +1,7 @@
 import InpBase from './InpBase';
 
 export default class InpTitle extends InpBase {
-  constructor(file: string) {
+  constructor(protected file: string) {
     super(file)
   }
 

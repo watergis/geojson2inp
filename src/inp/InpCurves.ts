@@ -3,10 +3,8 @@ import InpBase from './InpBase';
 import { PumpCurve, Pump } from '../asset';
 
 export default class InpPumps extends InpBase {
-  private pumps: Pump[];
-  constructor(file: string, pumps: Pump[]) {
+  constructor(file: string, private pumps: Pump[]) {
     super(file, 'CURVES')
-    this.pumps = pumps;
   }
 
   createHeader() {

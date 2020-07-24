@@ -5,13 +5,13 @@ import { InpJunctions, InpCoordinates } from '../inp';
 export default class Coordinates extends LayerBase {
   private coordMap: { [key: string]: Coordinate } = {};
 
-  constructor(geojsonFile: string) {
-    super(geojsonFile);
+  constructor(protected geojsonFile: string) {
+    super('Coordinates', geojsonFile);
   }
 
   load() {
     const geojson = this.loadGeoJSON();
-    if (!geojson){return;}
+    if (!geojson){return false;}
 
     this.coordMap = {};
     geojson.features.forEach((f: GeoJSON.Feature) => {

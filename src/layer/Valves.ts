@@ -5,8 +5,6 @@ import { InpValves } from '../inp';
 
 export default class Valves extends LayerBase {
   private valves: Valve[] = [];
-  private pipes: Pipes;
-  private coords: Coordinates;
 
   private del_pipes_id: string[] = [];
   get_del_pipes_id(){
@@ -18,15 +16,13 @@ export default class Valves extends LayerBase {
     return this.del_coords_id;
   }
 
-  constructor(geojsonFile: string, coords: Coordinates, pipes: Pipes) {
-    super(geojsonFile);
-    this.coords = coords;
-    this.pipes = pipes;
+  constructor(protected geojsonFile: string, private coords: Coordinates, private pipes: Pipes) {
+    super('Valves', geojsonFile);
   }
 
   load() {
     const geojson = this.loadGeoJSON();
-    if (!geojson){return;}
+    if (!geojson){return false;}
     geojson.features.forEach((f: GeoJSON.Feature) => {
       const valve = new Valve(f.properties);
       this.valves.push(valve);

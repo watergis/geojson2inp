@@ -1,13 +1,7 @@
 import fs from 'fs';
 
 export default class InpBase{
-  protected file: string = '';
-  protected title: string | undefined;
-
-  constructor(file: string, title?: string) {
-    this.file = file;
-    this.title = title;
-  }
+  constructor(protected file: string, protected title?: string) {}
 
   addText(text: string) {
     fs.appendFileSync(this.file, text);

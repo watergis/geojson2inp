@@ -8,11 +8,9 @@ import { InpPipes } from '../inp';
 
 export default class Pipes extends LayerBase {
   private pipes: Pipe[] = [];
-  private coords: Coordinates;
 
-  constructor(geojsonFile: string, coords: Coordinates) {
-    super(geojsonFile);
-    this.coords = coords;
+  constructor(protected geojsonFile: string, private coords: Coordinates) {
+    super('Pipes', geojsonFile);
   }
 
   load() {
@@ -21,7 +19,7 @@ export default class Pipes extends LayerBase {
     }
 
     const geojson = this.loadGeoJSON();
-    if (!geojson){return;}
+    if (!geojson){return false;}
     geojson.features.forEach((f: GeoJSON.Feature) => {
       const pipe_id: string = getProperty(f.properties, 'id');
       const pipe_size: number = getProperty(f.properties, 'diameter');

@@ -3,10 +3,8 @@ import InpBase from './InpBase';
 import { Coordinate } from '../asset';
 
 export default class InpJunctions extends InpBase {
-  private coordMap: { [key: string]: Coordinate };
-  constructor(file: string, coordMap: { [key: string]: Coordinate }) {
+  constructor(protected file: string, private coordMap: { [key: string]: Coordinate }) {
     super(file, 'JUNCTIONS')
-    this.coordMap = coordMap;
   }
 
   createHeader() {

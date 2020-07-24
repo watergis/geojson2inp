@@ -34,7 +34,12 @@ class geojson2inp {
         pumps,
         valves
       ];
-      layers.forEach(t=>{t.load()})
+      layers.forEach(t=>{
+        const isSucceess = t.load();
+        if (isSucceess === false && ['Coordinates', 'Pipes'].includes(t.name)){
+          reject('GeoJSON has no any features in Coordinates or Pipes layers.')
+        }
+      })
   
       if (fs.existsSync(this.output)) {
         fs.unlinkSync(this.output);

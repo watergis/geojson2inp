@@ -58,7 +58,9 @@ describe('failed case', (): void => {
     expect.assertions(1);
     return js2inp.generate().catch(e => {
       expect(e).toBe('One of GeoJSON for jucntions and pipes are missing');
-      fs.unlinkSync(config.output);
+      if (fs.existsSync(config.output)){
+        fs.unlinkSync(config.output);
+      }
     });
   })
 
@@ -79,7 +81,9 @@ describe('failed case', (): void => {
     expect.assertions(1); 
     return js2inp.generate().catch(e => {
       expect(e).toBe('One of GeoJSON for jucntions and pipes are missing');
-      fs.unlinkSync(config.output);
+      if (fs.existsSync(config.output)){
+        fs.unlinkSync(config.output);
+      }
     });
   })
 
@@ -99,11 +103,13 @@ describe('failed case', (): void => {
     expect.assertions(1);
     return js2inp.generate().catch(e => {
       expect(e).toBe('One of GeoJSON for jucntions and pipes are missing');
-      fs.unlinkSync(config.output);
+      if (fs.existsSync(config.output)){
+        fs.unlinkSync(config.output);
+      }
     });
   })
 
-  test('geojson is NULL', () => {
+  test('geojson is NULL', async() => {
     const config = {
       title: 'test',
       geojson: {
@@ -118,9 +124,9 @@ describe('failed case', (): void => {
     }
   
     const js2inp = new geojson2inp(config.geojson, config.output, config.title);   
-    // expect.assertions(1);
+    expect.assertions(1);
     return js2inp.generate().catch(e => {
-      expect(e.message).toMatch(/No features in this GeoJSON file/);
+      expect(e).toBe('GeoJSON has no any features in Coordinates or Pipes layers.');
       if (fs.existsSync(config.output)){
         fs.unlinkSync(config.output);
       }

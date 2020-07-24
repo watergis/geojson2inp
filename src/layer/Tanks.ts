@@ -6,16 +6,14 @@ import { InpTanks } from '../inp';
 
 export default class Tanks extends LayerBase {
   private tanks: Tank[] = [];
-  private coords: Coordinates;
 
-  constructor(geojsonFile: string, coords: Coordinates) {
-    super(geojsonFile);
-    this.coords = coords;
+  constructor(geojsonFile: string, private coords: Coordinates) {
+    super('Tanks', geojsonFile);
   }
 
   load() {
     const geojson = this.loadGeoJSON();
-    if (!geojson){return;}
+    if (!geojson){return false;}
     geojson.features.forEach((f: GeoJSON.Feature) => {
       let t: Tank = new Tank(f.properties);
       this.tanks.push(t);

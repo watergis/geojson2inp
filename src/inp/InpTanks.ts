@@ -3,10 +3,8 @@ import InpBase from './InpBase';
 import { Tank } from '../asset';
 
 export default class InpTanks extends InpBase {
-  private tanks: Tank[];
-  constructor(file: string, tanks: Tank[]) {
+  constructor(protected file: string, private tanks: Tank[]) {
     super(file, 'TANKS')
-    this.tanks = tanks;
   }
 
   createHeader() {

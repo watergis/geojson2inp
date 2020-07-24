@@ -3,12 +3,8 @@ import InpBase from './InpBase';
 import { Pipe } from '../asset';
 
 export default class InpPipes extends InpBase {
-  private pipes: Pipe[];
-  private idsExcludes: string[];
-  constructor(file: string, pipes: Pipe[], idsExcludes: string[]) {
+  constructor(protected file: string, private pipes: Pipe[], private idsExcludes: string[]) {
     super(file, 'PIPES')
-    this.pipes = pipes;
-    this.idsExcludes = idsExcludes;
   }
 
   createHeader() {

@@ -3,10 +3,8 @@ import InpBase from './InpBase';
 import { Valve } from '../asset';
 
 export default class InpValves extends InpBase {
-  private valves: Valve[];
-  constructor(file: string, valves: Valve[]) {
+  constructor(protected file: string, private valves: Valve[]) {
     super(file, 'VALVES')
-    this.valves = valves;
   }
 
   createHeader() {

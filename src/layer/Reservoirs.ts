@@ -5,16 +5,14 @@ import {InpReservoirs} from '../inp';
 
 export default class Reservoirs extends LayerBase {
   private reservoirs: Reservoir[] = [];
-  private coords: Coordinates;
 
-  constructor(geojsonFile: string, coords: Coordinates) {
-    super(geojsonFile);
-    this.coords = coords;
+  constructor(protected geojsonFile: string, private coords: Coordinates) {
+    super('Reservoirs', geojsonFile);
   }
 
   load() {
     const geojson = this.loadGeoJSON();
-    if (!geojson){return;}
+    if (!geojson){return false;}
     geojson.features.forEach((f: GeoJSON.Feature) => {
       let r: Reservoir = new Reservoir(f.properties);
       this.reservoirs.push(r);
