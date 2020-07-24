@@ -102,4 +102,28 @@ describe('failed case', (): void => {
       fs.unlinkSync(config.output);
     });
   })
+
+  test('geojson is NULL', () => {
+    const config = {
+      title: 'test',
+      geojson: {
+        junctions: __dirname + '/nulldata/junctions.geojson',
+        pipes: __dirname + '/nulldata/pipes.geojson',
+        pumps: __dirname + '/nulldata/pumps.geojson',
+        reservoirs: __dirname + '/nulldata/reservoirs.geojson',
+        tanks: __dirname + '/nulldata/tanks.geojson',
+        valves: __dirname + '/nulldata/valves.geojson'
+      },
+      output: __dirname + '/data.inp'
+    }
+  
+    const js2inp = new geojson2inp(config.geojson, config.output, config.title);   
+    // expect.assertions(1);
+    return js2inp.generate().catch(e => {
+      expect(e.message).toMatch(/No features in this GeoJSON file/);
+      if (fs.existsSync(config.output)){
+        fs.unlinkSync(config.output);
+      }
+    });
+  })
 })

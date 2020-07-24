@@ -1,6 +1,6 @@
 {
   "name": "@watergis/geojson2inp",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "This module converts GeoJSON to EPANET INP file",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
