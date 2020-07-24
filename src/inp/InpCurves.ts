@@ -17,6 +17,7 @@ export default class InpPumps extends InpBase {
   }
 
   addContent(data: PumpCurve) {
+    if (!data)return;
     const contents = [
       pad(data.id, 16),
       pad(data.flow.toString(), 12),
