@@ -20,8 +20,8 @@ export default class InpPumps extends InpBase {
     if (!data)return;
     const contents = [
       pad(data.id, 16),
-      pad(data.flow.toString(), 12),
-      pad(data.head.toString(), 12)
+      pad(data.flow?data.flow.toString():'', 12),
+      pad(data.head?data.head.toString():'', 12)
     ];
     this.addText(` ${contents.join('\t')}\t;\n`);
   }
