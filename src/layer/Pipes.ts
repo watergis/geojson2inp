@@ -23,7 +23,14 @@ export default class Pipes extends LayerBase {
     geojson.features.forEach((f: GeoJSON.Feature) => {
       const pipe_id: string = getProperty(f.properties, 'id');
       const pipe_size: number = getProperty(f.properties, 'diameter');
-      const coordinates: number[][] = getProperty(f.geometry, 'coordinates')[0];
+      let coordinates: number[][];
+      switch (f.geometry.type){
+        case 'MultiPoint':
+          coordinates = getProperty(f.geometry, 'coordinates');
+          break;
+        default:
+          coordinates = getProperty(f.geometry, 'coordinates')[0];
+      }
       coordinates.forEach(c1=>{
         const x1 : number= roundTo(c1[0], 6);
         const y1 : number= roundTo(c1[1], 6);
