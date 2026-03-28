@@ -26,6 +26,7 @@ export default class Pipes extends LayerBase {
       let coordinates: number[][];
       switch (f.geometry.type){
         case 'MultiPoint':
+        case 'LineString':
           coordinates = getProperty(f.geometry, 'coordinates');
           break;
         default:
